@@ -1,0 +1,57 @@
+# --- FORSA PROJECT GITIGNORE ---
+
+# AI Instructions & Documentation (Sensitive)
+GEMINI.md
+QWEN.md
+AGENTS.md
+CLAUDE.md
+*.md
+!README.md
+
+# Environment Secrets
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+backend/.env
+
+# Dependencies
+node_modules/
+/node_modules
+/.pnp
+.pnp.*
+
+# Next.js
+.next/
+/.next/
+out/
+/out/
+next-env.d.ts
+
+# Databases
+*.db
+*.sqlite
+backend/*.db
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+ENV/
+
+# OS/Misc
+.DS_Store
+Thumbs.db
+*.pem
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Samples (Malware/Test)
+*.apk
+Undangan_Pernikahan_Mencurigakan.apk
