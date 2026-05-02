@@ -33,19 +33,30 @@ def analyze_threat(data_type: str, raw_data: str, history: list = None):
             "dan memberikan penilaian apakah hal tersebut merupakan ancaman keamanan bagi masyarakat (seperti penipuan APK, phishing, dll). "
             "\n\nInstruksi Khusus:\n"
             "1. Berikan status: [AMAN], [WASPADA], atau [BERBAHAYA].\n"
-            "2. Jelaskan alasan teknisnya dengan bahasa yang mudah dipahami orang awam.\n"
-            "3. Berikan saran langkah pencegahan yang konkret.\n"
-            "4. Gunakan nada bicara yang profesional, tegas, namun tetap menenangkan.\n"
-            "5. Jika data yang diberikan adalah izin APK (Permissions), perhatikan kombinasi izin yang mencurigakan seperti "
-            "READ_SMS + RECEIVE_SMS + INTERNET + BIND_ACCESSIBILITY_SERVICE (indikasi pencurian OTP)."
+            "2. **Jelaskan Relasi Ancaman Secara Spesifik:** Jika ada kombinasi data yang berbahaya, jelaskan korelasinya. Contoh: 'Izin membaca SMS (READ_SMS) dikombinasikan dengan akses Internet (INTERNET) adalah potensi besar untuk pencurian kode OTP secara diam-diam.'\n"
+            "3. Berikan alasan teknis tambahan dengan bahasa yang mudah dipahami orang awam.\n"
+            "4. Berikan saran langkah pencegahan yang konkret.\n"
+            "5. Gunakan nada bicara yang profesional, tegas, namun tetap menenangkan."
         )
         user_content = f"Tipe Data: {data_type.upper()}\nData Mentah:\n{raw_data}"
     
     messages = [{"role": "system", "content": system_prompt}]
     
-    # Inject memory context
+    # Implement Sliding Window Memory
+    # Keep only the last 6 messages (3 pairs of user-bot interactions) to prevent token exhaustion
+    # while preserving immediate context.
     if history:
-        for msg in history[-10:]: # Keep last 10 messages for context
+        # Filter out messages that might be too large (e.g. raw extraction dumps)
+        # and only keep standard text interactions to save tokens
+        clean_history = []
+        for msg in history:
+            if isinstance(msg["content"], str) and len(msg["content"]) < 1500:
+                clean_history.append(msg)
+
+        # Take the last 6 messages
+        windowed_history = clean_history[-6:]
+
+        for msg in windowed_history:
             role = "assistant" if msg["role"] == "bot" else "user"
             messages.append({"role": role, "content": msg["content"]})
             
