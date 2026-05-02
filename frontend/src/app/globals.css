@@ -1,0 +1,149 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-space-mono);
+
+  --color-bg-light: #f5f5f0;
+  --color-bg-dark: #121212;
+
+  --color-text-light: #1a1a1a;
+  --color-text-dark: #f0f0f0;
+
+  --color-brand-primary: #00ff66; /* Terminal green */
+  --color-brand-danger: #ff003c; /* Neon red */
+  --color-brand-warning: #ffb800; /* Yellow */
+  --color-brand-safe: #00d1ff; /* Cyan */
+
+  /* Brutalist Shadows */
+  --shadow-brutal-sm: 3px 3px 0px 0px rgba(0,0,0,1);
+  --shadow-brutal-md: 5px 5px 0px 0px rgba(0,0,0,1);
+  --shadow-brutal-lg: 8px 8px 0px 0px rgba(0,0,0,1);
+
+  --shadow-brutal-dark-sm: 3px 3px 0px 0px rgba(255,255,255,1);
+  --shadow-brutal-dark-md: 5px 5px 0px 0px rgba(255,255,255,1);
+  --shadow-brutal-dark-lg: 8px 8px 0px 0px rgba(255,255,255,1);
+}
+
+/* Background Pattern (Dotted) */
+@layer base {
+  body {
+    background-image: radial-gradient(#d1d1cc 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  .dark body {
+    background-image: radial-gradient(#2a2a2a 1px, transparent 1px);
+  }
+}
+
+/* Base Utility Classes for Brutalism */
+@layer components {
+  .brutal-border {
+    border-width: 3px;
+    border-style: solid;
+    border-color: black;
+  }
+  .dark .brutal-border {
+    border-color: white;
+  }
+
+  .brutal-box {
+    border-width: 3px;
+    border-style: solid;
+    border-color: black;
+    background-color: white;
+  }
+  .dark .brutal-box {
+    border-color: white;
+    background-color: #1a1a1a;
+  }
+
+  .brutal-shadow {
+    box-shadow: var(--shadow-brutal-md);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .dark .brutal-shadow {
+    box-shadow: var(--shadow-brutal-dark-md);
+  }
+
+  .brutal-shadow:hover {
+    transform: translateY(-4px) translateX(-1px);
+    box-shadow: var(--shadow-brutal-lg);
+  }
+  .dark .brutal-shadow:hover {
+    box-shadow: var(--shadow-brutal-dark-lg);
+  }
+
+  .brutal-shadow-static {
+    box-shadow: var(--shadow-brutal-md);
+  }
+  .dark .brutal-shadow-static {
+    box-shadow: var(--shadow-brutal-dark-md);
+  }
+
+  .brutal-button {
+    border-width: 3px;
+    border-style: solid;
+    border-color: black;
+    background-color: white;
+    box-shadow: var(--shadow-brutal-md);
+    font-family: var(--font-mono);
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: transform 0.1s, box-shadow 0.1s;
+  }
+  .dark .brutal-button {
+    border-color: white;
+    background-color: #1a1a1a;
+    box-shadow: var(--shadow-brutal-dark-md);
+  }
+
+  .brutal-button:active {
+    transform: translateY(5px) translateX(5px);
+    box-shadow: none;
+  }
+  .dark .brutal-button:active {
+    box-shadow: none;
+  }
+
+  .brutal-input {
+    border-width: 3px;
+    border-style: solid;
+    border-color: black;
+    background-color: white;
+    font-family: var(--font-mono);
+    padding: 0.75rem;
+    outline: none;
+  }
+  .dark .brutal-input {
+    border-color: white;
+    background-color: #1a1a1a;
+  }
+  .brutal-input:focus {
+    border-color: var(--color-brand-primary);
+    box-shadow: 0 0 0 2px var(--color-brand-primary);
+  }
+}
+
+/* Animations */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+@keyframes pulse-neon {
+  0%, 100% { box-shadow: 0 0 10px #ff003c, inset 0 0 5px #ff003c; border-color: #ff003c; }
+  50% { box-shadow: 0 0 20px #ff003c, inset 0 0 10px #ff003c; border-color: #ff4d79; }
+}
+
+.animate-shake {
+  animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+.danger-neon {
+  animation: pulse-neon 1.5s infinite;
+}
