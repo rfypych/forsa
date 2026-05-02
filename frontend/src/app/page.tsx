@@ -1,6 +1,6 @@
 import { ChatLayout } from "@/components/chat/ChatLayout";
 import { ThreatCard } from "@/components/chat/ThreatCard";
-import { TerminalText } from "@/components/ui/TerminalText";
+
 
 export default function Home() {
   return (
@@ -15,13 +15,17 @@ export default function Home() {
           Sistem deteksi ancaman cyber. Upload file APK atau masukkan URL mencurigakan.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="border-2 border-black dark:border-white p-4 hover:bg-gray-100 dark:hover:bg-[#222] transition-colors cursor-pointer group">
+          <div className="border-2 border-black dark:border-white p-4 hover:bg-gray-100 dark:hover:bg-[#222] transition-colors cursor-pointer group md:[&:nth-child(odd):last-child]:col-span-2">
             <div className="font-bold text-lg mb-1 group-hover:text-brand-primary transition-colors">📱 Cek APK</div>
             <div className="text-sm font-mono text-gray-500">Analisa malware, pencurian OTP, dan izin akses.</div>
           </div>
-          <div className="border-2 border-black dark:border-white p-4 hover:bg-gray-100 dark:hover:bg-[#222] transition-colors cursor-pointer group">
+          <div className="border-2 border-black dark:border-white p-4 hover:bg-gray-100 dark:hover:bg-[#222] transition-colors cursor-pointer group md:[&:nth-child(odd):last-child]:col-span-2">
             <div className="font-bold text-lg mb-1 group-hover:text-brand-primary transition-colors">🔗 Cek Link</div>
             <div className="text-sm font-mono text-gray-500">Deteksi web phishing dan penipuan online.</div>
+          </div>
+          <div className="border-2 border-black dark:border-white p-4 hover:bg-gray-100 dark:hover:bg-[#222] transition-colors cursor-pointer group md:[&:nth-child(odd):last-child]:col-span-2">
+            <div className="font-bold text-lg mb-1 group-hover:text-brand-primary transition-colors">🔎 Analisa File</div>
+            <div className="text-sm font-mono text-gray-500">Analisa mendalam file PDF atau dokumen mencurigakan lainnya.</div>
           </div>
         </div>
       </div>

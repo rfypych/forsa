@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, Plus, X, Search, Moon, Sun, Upload, Send } from "lucide-react";
+import { Menu, Plus, X, Moon, Sun, Upload, Send } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
